@@ -27,14 +27,14 @@ function LevelBricks:construct()
       local new_brick_ypos = self.top_left_position_y + (row - 1)
                           * (self.brick_height + self.vertical_distance);
       self:addBrick(Brick(new_brick_xpos,new_brick_ypos,self.brick_width,
-                          self.brick_height));
+                          self.brick_height,"line"));
     end
   end
 end
 
 function LevelBricks:draw()
   for _,brick in pairs(self.bricks) do
-    love.graphics.rectangle("line", brick.pos_x, brick.pos_y, brick.width,
+    love.graphics.rectangle(brick.mode, brick.pos_x, brick.pos_y, brick.width,
                             brick.height);
   end
 end

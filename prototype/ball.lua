@@ -1,7 +1,7 @@
 
 Ball = Object:extend("Ball");
 Ball.static = {
-  seg_in_cercle = 16;
+  seg_in_cercle = 5;
 };
 
 function Ball:new(pos_x,pos_y,speed_x,speed_y,radius)

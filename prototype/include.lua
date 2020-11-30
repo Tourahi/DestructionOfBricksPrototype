@@ -6,6 +6,7 @@ function include()
   LevelBricks = require "level_bricks";
   Walls = require "walls";
   Platform  = require "platform";
+  Collisions = require "collisions";
 end
 
 include();

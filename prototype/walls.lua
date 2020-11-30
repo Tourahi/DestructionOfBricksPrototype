@@ -1,5 +1,5 @@
 
-Walls = Object:extend();
+Walls = Object:extend("Walls");
 
 function Walls:new(wall_thickness , walls)
   self.wall_thickness = wall_thickness;
@@ -9,7 +9,7 @@ end
 function Walls:construct()
   local left_wall = Brick(0,0,self.wall_thickness,love.graphics.getHeight());
   local right_wall = Brick(love.graphics.getWidth() - self.wall_thickness,
-                      0,self.wall_thickness,love.graphics.getHeight());
+                      0,self.wall_thickness,love.graphics.getHeight(),"line");
   local top_wall = Brick(0,0,love.graphics.getWidth(),self.wall_thickness);
   local bottom_wall = Brick(0,love.graphics.getHeight() - self.wall_thickness,
                       love.graphics.getWidth(),self.wall_thickness);
@@ -21,7 +21,7 @@ end
 
 function Walls:draw()
   for _,wall in pairs(self.walls) do
-    love.graphics.rectangle("line", wall.pos_x, wall.pos_y, wall.width,
+    love.graphics.rectangle(wall.mode, wall.pos_x, wall.pos_y, wall.width,
                             wall.height);
   end
 end

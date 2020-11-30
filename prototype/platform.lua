@@ -1,12 +1,13 @@
 
 Platform = Object:extend("Platform");
 
-function Platform:new(pos_x,pos_y,speed_x,width,height)
+function Platform:new(pos_x,pos_y,speed_x,width,height,mode)
   self.pos_x = pos_x;
   self.pos_y = pos_y;
   self.speed_x = speed_x;
   self.width = width;
   self.height = height;
+  self.mode = mode or "line";
 end
 
 function Platform:update(dt)
@@ -19,7 +20,7 @@ function Platform:update(dt)
 end
 
 function Platform:draw()
-  love.graphics.rectangle( 'line',
+  love.graphics.rectangle( self.mode,
        self.pos_x,
        self.pos_y,
        self.width,
