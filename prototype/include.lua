@@ -7,3 +7,5 @@ function include()
   Walls = require "walls";
   Platform  = require "platform";
 end
+
+include();

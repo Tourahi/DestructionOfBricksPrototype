@@ -1,7 +1,7 @@
 
 
 function love.load(arg)
-  include();
+  require "include";
   platform  = Platform(500,500,300,70,20);
   ball = Ball(400,400,10,10,10);
   level_one = LevelBricks(50,30,5,11,70,50,10,15);
