@@ -4,8 +4,6 @@ Collisions = Object:extend("Collisions");
 function Collisions:new()
   -- Debug members
   self.is_ball_platform_collision = false;
-  self.shiftX = 0;
-  self.shiftY = 0;
 end
 
 function Collisions:check_rectangles_overlap(a,b)
@@ -31,11 +29,12 @@ function Collisions:check_rectangles_overlap(a,b)
   return overlap,shift_b_x, shift_b_y;
 end
 
-function Collisions:ball_platform_collision(ball,platform)
+function Collisions:ball_platform_collision(platform,ball)
   local overlap, shift_ball_x, shift_ball_y;
   overlap,shift_b_x, shift_b_y=  Collisions:check_rectangles_overlap(
+                platform,
                 Brick(ball.pos_x,ball.pos_y,2*ball.radius,2*ball.radius)
-                ,platform);
+                );
   if overlap then
      ball:rebound( {x = shift_b_x,y = shift_b_y} );
   end
@@ -44,7 +43,8 @@ end
 function Collisions:ball_bricks_collision(ball,bricks)
   for i,brick in pairs(bricks) do
       if Collisions:check_rectangles_overlap(
-                   Brick(ball.pos_x,ball.pos_y,2*ball.radius,2*ball.radius)
+                   Brick(ball.pos_x,ball.pos_y,(2*ball.radius),
+                   (2*ball.radius))
                    ,brick) then
           print("ball_bricks_collision");
       end
@@ -52,7 +52,7 @@ function Collisions:ball_bricks_collision(ball,bricks)
 end
 
 function Collisions:resolve_collisions(ball,platform,bricks)
-  self:ball_platform_collision(ball,platform);
+  self:ball_platform_collision(platform,ball);
   self:ball_bricks_collision(ball,bricks);
 end
 

@@ -3,7 +3,7 @@
 function love.load(arg)
   require "include";
   platform  = Platform(500,500,300,70,20,'line');
-  ball = Ball(400,500,1,1,10);
+  ball = Ball(400,500,299,1,10);
   level_one = LevelBricks(50,30,5,11,70,50,10,15);
   screen_borders = Walls(30);
   level_one_collisions = Collisions();
@@ -18,6 +18,7 @@ end
 
 function love.update(dt)
   platform:update(dt);
+  ball:update(dt);
   level_one_collisions:resolve_collisions(ball,platform,level_one.bricks);
   watcher:update();
 end
