@@ -33,6 +33,7 @@ function LevelBricks:construct()
 end
 
 function LevelBricks:draw()
+  love.graphics.setColor(1.0, 1.0, 1.0, 1.0);
   for _,brick in pairs(self.bricks) do
     love.graphics.rectangle(brick.mode, brick.pos_x, brick.pos_y, brick.width,
                             brick.height);

@@ -20,6 +20,7 @@ function Platform:update(dt)
 end
 
 function Platform:draw()
+  love.graphics.setColor(1.0, 1.0, 1.0, 1.0);
   love.graphics.rectangle( self.mode,
        self.pos_x,
        self.pos_y,
