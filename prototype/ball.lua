@@ -10,26 +10,38 @@ function Ball:new(pos_x,pos_y,speed_x,speed_y,radius)
   self.speed_x = speed_x;
   self.speed_y = speed_y;
   self.radius = radius;
+  self.collisionBox = Brick(self.pos_x-self.radius,self.pos_y-self.radius,2*self.radius,
+                      2*self.radius,"line",{1.0,0.0,0.0,1.0});
 end
 
 function Ball:draw()
   love.graphics.setColor(1.0, 1.0, 1.0, 1.0);
   love.graphics.circle("line", self.pos_x, self.pos_y, self.radius,
                         Ball.static.seg_in_cercle);
+  love.graphics.setColor(unpack(self.collisionBox.color));
+  love.graphics.rectangle("line",
+            self.collisionBox.pos_x,
+            self.collisionBox.pos_y,
+            self.collisionBox.width,
+            self.collisionBox.height);
 end
 
 function Ball:update(dt)
   if love.keyboard.isDown("d") then
     self.pos_x = self.pos_x + self.speed_x * dt;
+    self.collisionBox.pos_x = self.pos_x-self.radius;
   end
   if love.keyboard.isDown("q") then
     self.pos_x = self.pos_x - self.speed_x * dt;
+    self.collisionBox.pos_x = self.pos_x-self.radius;
   end
   if love.keyboard.isDown("z") then
-    self.pos_y = self.pos_y - self.speed_x * dt;
+    self.pos_y = self.pos_y - self.speed_y * dt;
+    self.collisionBox.pos_y = self.pos_y-self.radius;
   end
   if love.keyboard.isDown("s") then
-    self.pos_y = self.pos_y + self.speed_x * dt;
+    self.pos_y = self.pos_y + self.speed_y * dt;
+    self.collisionBox.pos_y = self.pos_y-self.radius;
   end
 end
 
@@ -39,9 +51,11 @@ function Ball:rebound(shift)
   if math.abs(shift.x) == min_shift then
     shift.y = 0;
     self.pos_x = self.pos_x+(shift.x) ;
+    self.collisionBox.pos_x = self.pos_x-self.radius;
   else
     shift.x = 0;
     self.pos_y = self.pos_y+(shift.y);
+    self.collisionBox.pos_y = self.pos_y-self.radius;
   end
   if shift.x ~= 0 then
     self.speed_x  = -self.speed_x;

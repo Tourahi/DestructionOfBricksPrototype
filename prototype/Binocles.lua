@@ -78,7 +78,7 @@ end
 function Bonocles:update()
   for key,obj in ipairs(self.listeners) do -- Update Objects
     if type(obj) == 'function'then
-      self.results[key] = tostring(obj()) or 'Error!';
+      self.results[key] = obj() or 'Error!';
     end
    end
    for i,file in ipairs(self.watchedFiles) do

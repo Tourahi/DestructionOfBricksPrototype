@@ -17,9 +17,8 @@ function include()
         'DEBUG.lua'
       },
     });
-
-  Ball    = require "ball";
   Brick   = require "brick";
+  Ball    = require "ball";
   LevelBricks = require "level_bricks";
   Walls = require "walls";
   Platform  = require "platform";
