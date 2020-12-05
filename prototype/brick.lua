@@ -11,4 +11,7 @@ function Brick:new(pos_x,pos_y,width,height,mode,color)
 end
 
 
+
+
+
 return Brick;

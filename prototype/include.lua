@@ -11,6 +11,7 @@ function include()
       colorToggle   = 'f3',
       draw_x = 75,
       draw_y = 20,
+      restart = true,
       watchedFiles = {
         'main.lua',
         'include.lua',

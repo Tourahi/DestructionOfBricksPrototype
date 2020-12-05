@@ -32,6 +32,10 @@ function LevelBricks:construct()
   end
 end
 
+function LevelBricks:brickHitByBall(i, brick, shift_ball_x, shift_ball_y)
+  table.remove(self.bricks,i);
+end
+
 function LevelBricks:draw()
   love.graphics.setColor(1.0, 1.0, 1.0, 1.0);
   for _,brick in pairs(self.bricks) do

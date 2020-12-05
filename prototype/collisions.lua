@@ -37,17 +37,19 @@ function Collisions:ball_platform_collision(platform,ball)
   end
 end
 
-function Collisions:ball_bricks_collision(ball,bricks)
-  for i,brick in pairs(bricks) do
-      if Collisions:check_rectangles_overlap(ball.collisionBox,brick) then
-          print("ball_bricks_collision");
+function Collisions:ball_bricks_collision(ball,level)
+  for i,brick in pairs(level.bricks) do
+      local overlap,shift_b_x, shift_b_y = Collisions:check_rectangles_overlap(brick,ball.collisionBox);
+      if overlap then
+          ball:rebound( {x = shift_b_x,y = shift_b_y} );
+          level:brickHitByBall(i,shift_b_x,shift_b_y);
       end
   end
 end
 
-function Collisions:resolve_collisions(ball,platform,bricks)
+function Collisions:resolve_collisions(ball,platform,level)
   self:ball_platform_collision(platform,ball);
-  self:ball_bricks_collision(ball,bricks);
+  self:ball_bricks_collision(ball,level);
 end
 
 

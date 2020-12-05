@@ -13,7 +13,7 @@ end
 function love.update(dt)
   platform:update(dt);
   ball:update(dt);
-  level_one_collisions:resolve_collisions(ball,platform,level_one.bricks);
+  level_one_collisions:resolve_collisions(ball,platform,level_one);
   watcher:update();
 end
 

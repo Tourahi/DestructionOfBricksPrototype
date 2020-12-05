@@ -57,12 +57,12 @@ function Ball:rebound(shift)
     self.pos_y = self.pos_y+(shift.y);
     self.collisionBox.pos_y = self.pos_y-self.radius;
   end
-  if shift.x ~= 0 then
-    self.speed_x  = -self.speed_x;
-  end
-  if shift.y ~= 0 then
-    self.speed_y  = -self.speed_y;
-  end
+  -- if shift.x ~= 0 then
+  --   self.speed_x  = -self.speed_x;
+  -- end
+  -- if shift.y ~= 0 then
+  --   self.speed_y  = -self.speed_y;
+  -- end
 end
 
 return Ball;
