@@ -47,9 +47,19 @@ function Collisions:ball_bricks_collision(ball,level)
   end
 end
 
-function Collisions:resolve_collisions(ball,platform,level)
+function Collisions:ball_walls_collision( ball,walls)
+   for i,wall in pairs(walls) do
+      local overlap,shift_b_x, shift_b_y = Collisions:check_rectangles_overlap(wall,ball.collisionBox);
+      if overlap then
+         ball:rebound( {x = shift_b_x,y = shift_b_y} );
+     end
+   end
+end
+
+function Collisions:resolve_collisions(ball,platform,level,walls)
   self:ball_platform_collision(platform,ball);
   self:ball_bricks_collision(ball,level);
+  self:ball_walls_collision(ball,walls)
 end
 
 

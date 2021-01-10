@@ -1,6 +1,6 @@
 
 Platform = Object:extend("Platform");
-
+Platform:implement(Mouvement);
 function Platform:new(pos_x,pos_y,speed_x,width,height,mode)
   self.pos_x = pos_x;
   self.pos_y = pos_y;
