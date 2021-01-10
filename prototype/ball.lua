@@ -8,6 +8,8 @@ Ball:implement(Mouvement);
 function Ball:new(pos_x,pos_y,speed_x,speed_y,radius)
   self.pos_x = pos_x;
   self.pos_y = pos_y;
+  self._pos_x = pos_x;
+  self._pos_y = pos_y;
   self.speed_x = speed_x;
   self.speed_y = speed_y;
   self.radius = radius;
@@ -19,20 +21,25 @@ function Ball:draw()
   love.graphics.setColor(1.0, 1.0, 1.0, 1.0);
   love.graphics.circle("line", self.pos_x, self.pos_y, self.radius,
                         Ball.static.seg_in_cercle);
-  love.graphics.setColor(unpack(self.collisionBox.color));
-  love.graphics.rectangle("line",
-            self.collisionBox.pos_x,
-            self.collisionBox.pos_y,
-            self.collisionBox.width,
-            self.collisionBox.height);
+  -- love.graphics.setColor(unpack(self.collisionBox.color));
+  -- love.graphics.rectangle("line",
+  --           self.collisionBox.pos_x,
+  --           self.collisionBox.pos_y,
+  --           self.collisionBox.width,
+  --           self.collisionBox.height);
+end
+
+function Ball:reposition()
+  self.pos_x = self._pos_x;
+  self.pos_y = self._pos_y;
 end
 
 function Ball:update(dt)
-  self:ballMove("z","s","q","d",dt); -- Debug only
-  -- self.pos_x = self.pos_x + self.speed_x * dt;
-  -- self.pos_y = self.pos_y + self.speed_y * dt;
-  -- self.collisionBox.pos_x = self.pos_x-self.radius;
-  -- self.collisionBox.pos_y = self.pos_y-self.radius;
+  -- self:ballMove("z","s","q","d",dt); -- Debug only
+  self.pos_x = self.pos_x + self.speed_x * dt;
+  self.pos_y = self.pos_y + self.speed_y * dt;
+  self.collisionBox.pos_x = self.pos_x-self.radius;
+  self.collisionBox.pos_y = self.pos_y-self.radius;
 end
 
 function Ball:rebound(shift)

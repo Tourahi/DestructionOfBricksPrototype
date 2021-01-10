@@ -10,10 +10,10 @@ function Collisions:check_rectangles_overlap(a,b)
   -- checks Collisions between two Bricks
   local overlap = false;
   local shift_b_x, shift_b_y = 0, 0;
-  if not((a.pos_x + a.width) < b.pos_x or
-         (b.pos_x + b.width) < a.pos_x or
-         (a.pos_y + a.height)< b.pos_y or
-         (b.pos_y + b.height)< a.pos_y) then
+  if (a.pos_x < b.pos_x + b.width and
+      b.pos_x < a.pos_x + a.width and
+      a.pos_y < b.pos_y + b.height and 
+      b.pos_y < a.pos_y + a.height ) then
       overlap = true;
       if ( a.pos_x + a.width / 2 ) < ( b.pos_x + b.width / 2 ) then
          shift_b_x = ( a.pos_x + a.width ) - b.pos_x;
@@ -38,7 +38,7 @@ function Collisions:ball_platform_collision(platform,ball)
 end
 
 function Collisions:ball_bricks_collision(ball,level)
-  for i,brick in pairs(level.bricks) do
+  for i,brick in pairs(level.current_level_bricks) do
       local overlap,shift_b_x, shift_b_y = Collisions:check_rectangles_overlap(brick,ball.collisionBox);
       if overlap then
           ball:rebound( {x = shift_b_x,y = shift_b_y} );
