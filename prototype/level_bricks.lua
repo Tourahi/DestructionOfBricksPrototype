@@ -11,13 +11,12 @@ function LevelBricks:new(width,height,
   self.brick_height = height
   self.horizontal_distance = hd;
   self.vertical_distance = vd;
-  self.bricks = {} or bricks;
   self.no_bricks_left = false;
-  self.current_level_bricks = {};
+  self.bricks = {} or bricks;
 end
 
 function LevelBricks:addBrick(brick)
-  table.insert(self.current_level_bricks , brick);
+  table.insert(self.bricks , brick);
 end
 
 function LevelBricks:construct(levelSequence)
@@ -36,22 +35,18 @@ function LevelBricks:construct(levelSequence)
 end
 
 function LevelBricks:brickHitByBall(i, brick, shift_ball_x, shift_ball_y)
-  table.remove(self.current_level_bricks,i);
+  table.remove(self.bricks,i);
 end
 
 function LevelBricks:update(dt)
-  if #self.current_level_bricks == 0 then 
+  if #self.bricks == 0 then 
     self.no_bricks_left = true;
-  else
-    -- for _, brick in pairs( self.current_level_bricks ) do
-    --   bricks.update_brick( brick )
-    -- end  
   end
 end
 
 function LevelBricks:draw()
   love.graphics.setColor(1.0, 1.0, 1.0, 1.0);
-  for _,brick in pairs(self.current_level_bricks) do
+  for _,brick in pairs(self.bricks) do
     love.graphics.rectangle(brick.mode, brick.pos_x, brick.pos_y, brick.width,
                             brick.height);
   end

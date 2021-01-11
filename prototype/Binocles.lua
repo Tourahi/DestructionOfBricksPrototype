@@ -95,7 +95,7 @@ function Bonocles:update()
    end
 end
 
-function Bonocles:draw()
+function Bonocles:draw() -- TO-DO draw Boolean values
   if self.active then
     love.graphics.setColor(self.printColor);
     local draw_y = self.draw_y;

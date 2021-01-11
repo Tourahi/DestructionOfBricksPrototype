@@ -1,5 +1,8 @@
 Mouvement = Object:extend("Mouvement");
 
+
+-- Debug class
+
 function Mouvement:new()
 
 end
