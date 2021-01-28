@@ -15,14 +15,16 @@ function gamepaused.draw ()
   end
   love.graphics.print(
      "Game is paused. Press Enter to continue or Esc to quit",
-     50, 50)
+     50, 50);
 end
 
 function gamepaused.keyreleased( key, code )
    if key == "return" then
-      gamestates.setState( "game" )
+     gamestates.setState( "game" );
    elseif key == 'escape' then
-      love.event.quit()
+     love.event.quit();
+   elseif key == 'r' then
+     love.event.quit("restart");
    end
 end
 

@@ -20,14 +20,6 @@ function Platform:update(dt)
     self.pos_x = self.pos_x - self.speed * dt;
     self.collisionBox.pos_x = self.pos_x;
   end
-  -- if love.keyboard.isDown("up") then
-  --   self.pos_y = self.pos_y - self.speed * dt;
-  --   self.collisionBox.pos_y = self.pos_y;
-  -- end
-  -- if love.keyboard.isDown("down") then
-  --   self.pos_y = self.pos_y + self.speed * dt;
-  --   self.collisionBox.pos_y = self.pos_y;
-  -- end
 end
 
 function Platform:draw()

@@ -4,14 +4,14 @@ function menu.update( dt )
 end
 
 function menu.draw()
-   love.graphics.print("Menu gamestate. Press Enter to continue.",
+   love.graphics.print("Menu. Press Enter to continue.",
 		       280, 250)
 end
 
 function menu.keyreleased( key, code )
    if key == "return" then
-      gamestates.setState( "game", { current_level = 1 } )
-   elseif key == 'escape' then
+      gamestates.setState( "game", {  } );
+   elseif key == "escape" then
       love.event.quit()
    end
 end

@@ -29,7 +29,7 @@ function gameStates.setState( Sname , ... ) -- Sname : stateName
   current_state = loaded[ Sname ];
   if not current_state then
     current_state = require (gameStatesPath .. Sname);
-    loaded[ Sname ] = current_state;
+    loaded[ Sname ] = current_state; -- perhaps cache only the state name then test against it.
     gameStates.stateEvent('load' , oldStateName , ... );
   end
   print(oldStateName);

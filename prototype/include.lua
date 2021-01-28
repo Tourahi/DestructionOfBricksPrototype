@@ -1,4 +1,3 @@
-
 function include()
   Object  = require "classicc";
   -- DEBUG

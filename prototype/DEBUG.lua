@@ -1,7 +1,3 @@
-
-DEBUG = {};
-
-
 function watch()
   watcher:watch("CalculatedFPS", function() return math.floor(1/love.timer.getDelta()) end);
   watcher:watch("EngineFPS",   function() return love.timer.getFPS() end);

@@ -3,7 +3,7 @@ Ball = Object:extend("Ball");
 Ball.static = {
   seg_in_cercle = 40;
 };
-Ball:implement(Mouvement);
+-- Ball:implement(Mouvement);
 
 function Ball:new(pos_x,pos_y,speed_x,speed_y,radius)
   self.pos_x = pos_x;
@@ -39,7 +39,6 @@ function Ball:reposition()
 end
 
 function Ball:update(dt)
-  -- self:ballMove("z","s","q","d",dt); -- Debug only
   self.pos_x = self.pos_x + self.speed_x * dt;
   self.pos_y = self.pos_y + self.speed_y * dt;
   self.collisionBox.pos_x = self.pos_x-self.radius;

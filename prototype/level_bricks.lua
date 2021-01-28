@@ -26,6 +26,7 @@ function LevelBricks:addBrick(brick)
 end
 
 function LevelBricks:construct(levelSequence)
+  self.no_bricks_left = false;
   for row_index, row in ipairs(levelSequence) do
     for col_index,bricktype in ipairs(row) do
       if bricktype ~= 0 then

@@ -1,12 +1,16 @@
 local game = {};
 
+require "include";
+require ("initEntities")();
+require "DEBUG";
+
 function game.load(arg)
-  require "include";
 end
 
 function game.enter( prevState , ... )
-  require "initEntities";
-  require "DEBUG";
+  if prevState == "gamefinished" then
+    require ("initEntities")();
+  end
 end
 
 function game.update(dt)
@@ -24,16 +28,11 @@ function game.draw()
   ball:draw();
   current_level_bricks:draw();
   screen_borders:draw();
-  if level_sequence.game_finished then
-    love.graphics.printf( "Congratulations!\n" ..
-                          "You have finished the game!",
-                           300, 250, 200, "center" )
-  end
 end
 
 function game.keyreleased( key, code )
    if key == 'c' then
-      current_level_bricks:clear_current_level_bricks()
+      current_level_bricks:clear_current_level_bricks();
    elseif  key == 'escape' then
       gamestates.setState( "gamepaused", { ball, screen_borders , platform, current_level_bricks, platform, watcher } )
    end

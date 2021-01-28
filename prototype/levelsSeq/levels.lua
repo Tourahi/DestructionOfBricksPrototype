@@ -18,9 +18,14 @@ end
             level:construct(levels.require_level());
             ball:reposition();
         else
-            levels.game_finished = true;
+            gamestates.setState( "gamefinished" );
         end
     end
+ end
+
+ function levels.reset()
+   levels.current_level = 1;
+   levels.game_finished = false;
  end
 
 
