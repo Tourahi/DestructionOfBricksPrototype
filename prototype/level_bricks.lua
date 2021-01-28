@@ -1,6 +1,12 @@
 
 LevelBricks = Object:extend("LevelBricks");
 
+local brickColorsPallete = {
+  [1] = {1,0,0,1},
+  [2] = {0,1,0,1},
+  [3] = {0,0,1,1},
+}
+
 function LevelBricks:new(width,height,
                         tlpx,tlpy,hd,vd,bricks)
   self.rows = rows;
@@ -27,8 +33,9 @@ function LevelBricks:construct(levelSequence)
                             * (self.brick_width + self.horizontal_distance);
         local new_brick_ypos = self.top_left_position_y + (row_index - 1)
                             * (self.brick_height + self.vertical_distance);
+
         self:addBrick(Brick(new_brick_xpos,new_brick_ypos,self.brick_width,
-                            self.brick_height,"line"));
+                            self.brick_height,"line",brickColorsPallete[bricktype]));
       end
     end
   end
@@ -39,7 +46,7 @@ function LevelBricks:brickHitByBall(i, brick, shift_ball_x, shift_ball_y)
 end
 
 function LevelBricks:update(dt)
-  if #self.bricks == 0 then 
+  if #self.bricks == 0 then
     self.no_bricks_left = true;
   end
 end
@@ -47,9 +54,11 @@ end
 function LevelBricks:draw()
   love.graphics.setColor(1.0, 1.0, 1.0, 1.0);
   for _,brick in pairs(self.bricks) do
+    love.graphics.setColor(brick.color);
     love.graphics.rectangle(brick.mode, brick.pos_x, brick.pos_y, brick.width,
                             brick.height);
   end
+  love.graphics.setColor(1.0, 1.0, 1.0, 1.0);
 end
 
 
