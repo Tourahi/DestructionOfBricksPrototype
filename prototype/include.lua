@@ -18,7 +18,6 @@ function include()
         'DEBUG.lua'
       },
     });
-  Mouvement    = require "mouvement";
   Brick   = require "brick";
   Ball    = require "ball";
   LevelBricks = require "level_bricks";

@@ -61,5 +61,9 @@ function LevelBricks:draw()
   love.graphics.setColor(1.0, 1.0, 1.0, 1.0);
 end
 
+function LevelBricks:clear_current_level_bricks()
+  self.bricks = {};
+end
+
 
 return LevelBricks;

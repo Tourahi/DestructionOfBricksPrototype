@@ -1,37 +1,26 @@
-
+gamestates = require "./gameStates/gamestates"
 
 function love.load(arg)
-  require "include";
-  require "initEntities";
-  require "DEBUG";
-end
-
-function love.quit()
-  print("See you");
+  gamestates.setState( "menu" );
 end
 
 function love.update(dt)
-  platform:update(dt);
-  ball:update(dt);
-  current_level_bricks:update(dt);
-  level_collisions:resolve_collisions(ball,platform,current_level_bricks,screen_borders.walls);
-  level_sequence.switch_to_next_level(current_level_bricks);
-  watcher:update();
+  gamestates.stateEvent( "update" , dt );
 end
 
 function love.draw()
-  watcher:draw();
-  platform:draw();
-  ball:draw();
-  current_level_bricks:draw();
-  screen_borders:draw();
-  if level_sequence.game_finished then 
-    love.graphics.printf( "Congratulations!\n" ..
-                          "You have finished the game!",
-                           300, 250, 200, "center" )
-  end
+    gamestates.stateEvent( "draw" );
 end
 
+function love.keyreleased( key, code )
+   gamestates.stateEvent( "keyreleased", key, code );
+end
+
+function love.quit()
+  print("Thanks for playing! Come back soon!")
+end
+
+
 function love.keypressed(key)
-  watcher:keypressed(key);
+  gamestates.stateEvent( "keypressed", key );
 end
