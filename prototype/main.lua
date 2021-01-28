@@ -25,6 +25,11 @@ function love.draw()
   ball:draw();
   current_level_bricks:draw();
   screen_borders:draw();
+  if level_sequence.game_finished then 
+    love.graphics.printf( "Congratulations!\n" ..
+                          "You have finished the game!",
+                           300, 250, 200, "center" )
+  end
 end
 
 function love.keypressed(key)

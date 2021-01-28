@@ -13,7 +13,7 @@ function Ball:new(pos_x,pos_y,speed_x,speed_y,radius)
   self.speed_x = speed_x;
   self.speed_y = speed_y;
   self.radius = radius;
-  self.collisionBox = Brick(self.pos_x-self.radius,self.pos_y-self.radius,2*self.radius,
+  self.collisionBox = Brick(self.pos_x-self.radius,self.pos_y-self.radius,2*self.radius ,
                       2*self.radius,"line",{1.0,0.0,0.0,1.0});
 end
 
@@ -21,12 +21,16 @@ function Ball:draw()
   love.graphics.setColor(1.0, 1.0, 1.0, 1.0);
   love.graphics.circle("line", self.pos_x, self.pos_y, self.radius,
                         Ball.static.seg_in_cercle);
-  -- love.graphics.setColor(unpack(self.collisionBox.color));
-  -- love.graphics.rectangle("line",
-  --           self.collisionBox.pos_x,
-  --           self.collisionBox.pos_y,
-  --           self.collisionBox.width,
-  --           self.collisionBox.height);
+  self:drawColliBox();
+end
+
+function Ball:drawColliBox(  )
+  love.graphics.setColor(unpack(self.collisionBox.color));
+  love.graphics.rectangle("line",
+            self.collisionBox.pos_x,
+            self.collisionBox.pos_y,
+            self.collisionBox.width,
+            self.collisionBox.height);
 end
 
 function Ball:reposition()
